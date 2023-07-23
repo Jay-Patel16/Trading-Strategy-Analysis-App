@@ -51,4 +51,27 @@ def getSignals(dataframe):
                     Sell.append(dataframe[i+j+1].name)
     return Buy,Sell
 
+def graphRSI(dataf,buy,sell):
+    fig = go.Figure(data=[go.Candlestick(x=dataf.index,
+                open=dataf['Open'],
+                high=dataf['High'],
+                low=dataf['Low'],
+                close=dataf['Close'])])
+    fig.add_scatter(x=dataf.loc[buy].index, y=dataf.loc[buy]['Adj Close'], mode='markers',marker=dict(color='#32FF00',
+            size=12,
+            line=dict(
+                color='Black',
+                width=2
+            ),symbol='arrow'),name='Enter')
+    fig.add_scatter(x=dataf.loc[sell].index, y=dataf.loc[sell]['Adj Close'], mode='markers',marker=dict(
+            color='#FF1B00',
+            size=12,
+            line=dict(
+                color='Black',
+                width=2
+            ),symbol='arrow'
+        ),name='Exit')
+    
+    fig.show()
+
 

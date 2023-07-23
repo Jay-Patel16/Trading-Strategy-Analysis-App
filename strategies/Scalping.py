@@ -68,3 +68,33 @@ def displayEntryExit(data):
             #print(data.iloc[i].name)
             Sell.append(data.iloc[i].name)
     return Buy, Sell
+
+def graphScalping(dataF,Buy,Sell):
+    fig = go.Figure(data=[go.Candlestick(x=dataF['Date'],
+                open=dataF['Open'],
+                high=dataF['High'],
+                low=dataF['Low'],
+                close=dataF['Close'],
+                name='Candles'),
+                go.Scatter(x=dataF.Date,y=dataF.EMAFast,line=dict(color='orange'),name='EMAFast'),
+                go.Scatter(x=dataF.Date,y=dataF.EMAMedium,line=dict(color='purple'),name='EMAMedium'),
+                go.Scatter(x=dataF.Date,y=dataF.EMASlow,line=dict(color='black'),name='EMASlow')],
+                layout=go.Layout(title=go.layout.Title(text="Scalping Graph")
+    ))
+    SetPlaceBuy = [0] * len(Buy)
+    SetPlaceSell = [0] * len(Buy)
+    fig.add_scatter(x=dataF.loc[Buy].Date, y=SetPlaceBuy, mode='markers',marker=dict(color='#32FF00',
+            size=12,
+            line=dict(
+                color='Black',
+                width=2
+            ),symbol='arrow'),name='Enter')
+    fig.add_scatter(x=dataF.loc[Sell].Date, y=SetPlaceSell, mode='markers',marker=dict(
+            color='#FF1B00',
+            size=12,
+            line=dict(
+                color='Black',
+                width=2
+            ),symbol='arrow'
+        ),name='Exit')
+    fig.show()

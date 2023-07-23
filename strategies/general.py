@@ -15,6 +15,23 @@ import plotly.graph_objects as go
 import numpy as np
 import xlsxwriter
 
+def profits(Buy,Sell,data):
+    Profits = (data.loc[Sell].Close.values - data.loc[Buy].Close.values)/data.loc[Buy].Close.values
+    return Profits
+
+def getWinRate(Profits):
+    winnings = [i for i in Profits if i >0]
+    winRate = len(winnings)/len(Profits)
+    return winRate
+
+def getStockData(asset,startDate,endDate):
+    if endDate == 'PRESENT':
+        data = yf.download(asset, start= startDate)
+        return data
+    else:
+        data = yf.download(asset, start= startDate, end = endDate)
+        return data
+
 def TradingViewRec(asset,screener,interval,exchange):
     stock = TA_Handler(symbol=asset,exchange=exchange,screener=screener,interval=interval,timeout=None)
     rec = stock.get_analysis().summary
@@ -23,5 +40,4 @@ def TradingViewRec(asset,screener,interval,exchange):
 def exportToExcelData(data,asset):
     excelFileName = asset+".xlsx"
     excelFile = xlsxwriter.Workbook(excelFileName)
-    # sheet = excelFile.add_worksheet()
     data.to_excel(excelFileName,index=False)
