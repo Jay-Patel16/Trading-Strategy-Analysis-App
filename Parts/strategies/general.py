@@ -25,15 +25,11 @@ def getWinRate(Profits):
     return winRate
 
 def getStockData(asset,startDate,endDate):
-    if endDate == 'PRESENT':
-        data = yf.download(asset, start= startDate)
-        return data
-    else:
-        data = yf.download(asset, start= startDate, end = endDate)
-        return data
+    data = yf.download(asset, start= startDate, end = endDate)
+    return data
 
-def TradingViewRec(asset,screener,interval,exchange):
-    stock = TA_Handler(symbol=asset,exchange=exchange,screener=screener,interval=interval,timeout=None)
+def TradingViewRec(asset,exchange):
+    stock = TA_Handler(symbol=asset,exchange=exchange,screener='america',interval='5m',timeout=None)
     rec = stock.get_analysis().summary
     return (rec['RECOMMENDATION'])
 

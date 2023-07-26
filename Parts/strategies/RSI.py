@@ -15,15 +15,15 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import numpy as np
 
-def TradingViewRec(asset,screener,interval,exchange):
-    stock = TA_Handler(symbol=asset,exchange=exchange,screener=screener,interval=interval,timeout=None)
+def TradingViewRec(asset,exchange):
+    stock = TA_Handler(symbol=asset,exchange=exchange,screener='america',interval='5m',timeout=None)
     rec = stock.get_analysis().summary
     return (rec['RECOMMENDATION'])
     
 
 # asset ticker symbol
-def RSI(asset):
-    dataframe = yf.download(asset, start = "2015-01-01")
+def RSI(asset, startD, endD):
+    dataframe = yf.download(asset, start = startD, end=endD)
     dataframe["200Day"] = dataframe['Adj Close'].rolling(window=200).mean()
     dataframe["RelativeReturn"] = dataframe['Adj Close'].pct_change()
     dataframe['Upmove'] = dataframe['RelativeReturn'].apply(lambda x: x if x >0 else 0)

@@ -79,8 +79,6 @@ def rangeTrendFollowing(asset, startDate, endDate,buyP, sellP, startHour):
         buy, sell, profits = trendFollowing(dataOneDay,buyP,sellP,startHour)
         profitsOverall.append(profits)
     winRate = getWinRate(profitsOverall)
-    print(profitsOverall)
-    print(winRate)
     return profitsOverall,winRate
 
 def graphTrendOneDay(buy,sell,data):
