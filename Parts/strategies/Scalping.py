@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import numpy as np
 
-def scalping(asset,startD,endD,daysT):
+def scalping(asset,startD,endD,daysT,buyP):
     data = yf.download(asset, start= startD, end=endD)
     data= data.reset_index()
   #  CandleChart = chart.Figure(data=[chart.Candlestick(x=data['Date'],open=data['Open'],high=data['High'],low=data['Low'],close=data['Close'])])
@@ -44,7 +44,7 @@ def scalping(asset,startD,endD,daysT):
         if data.Signal[day] == 'Uptrend' and data.Open[day]<data.EMAFast[day] and data.Close[day]>data.EMAFast[day]:
             Signals[day] = 'Entry'
             for days in range(1,daysT+1):
-                if (data.Close[day + days])>(data.Close[day]*1.02):
+                if (data.Close[day + days])>(data.Close[day]*(1+(buyP/100))):
                     Signals[day+days] = 'Exit'
                     break
                 elif days == daysT:

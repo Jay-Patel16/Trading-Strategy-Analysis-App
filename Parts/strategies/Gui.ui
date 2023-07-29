@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>mainWindow</class>
+ <widget class="QMainWindow" name="mainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>753</width>
+    <height>685</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>HP Simplified Hans</family>
+    <pointsize>9</pointsize>
+   </font>
+  </property>
+  <property name="mouseTracking">
+   <bool>true</bool>
+  </property>
+  <property name="tabletTracking">
+   <bool>false</bool>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::NoFocus</enum>
+  </property>
+  <property name="windowTitle">
+   <string>Trading Strategy Analyzer</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>stockicon.png</normaloff>stockicon.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(116, 235, 213, 255), stop:1 rgba(172, 182, 229, 255));</string>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>40</y>
+      <width>671</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Agency FB</family>
+      <pointsize>36</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <property name="lineWidth">
+     <number>2</number>
+    </property>
+    <property name="text">
+     <string>Welcome To 
+Trading Strategy Analyzer</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>360</y>
+      <width>671</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Agency FB</family>
+      <pointsize>28</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="lineWidth">
+     <number>2</number>
+    </property>
+    <property name="text">
+     <string>Please Choose One of the 
+Options to Get Started</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>753</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-color: rgb(255, 85, 0);</string>
+   </property>
+   <widget class="QMenu" name="menuStock">
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="title">
+     <string>Strategies</string>
+    </property>
+    <addaction name="actionTrend_Following"/>
+    <addaction name="actionScalping"/>
+    <addaction name="actionRSI_Indexing"/>
+   </widget>
+   <widget class="QMenu" name="menuScalping">
+    <property name="title">
+     <string>Others</string>
+    </property>
+    <addaction name="actionHome"/>
+    <addaction name="actionGeneral_Recommendation"/>
+   </widget>
+   <addaction name="menuStock"/>
+   <addaction name="menuScalping"/>
+  </widget>
+  <action name="actionTrend_Following">
+   <property name="text">
+    <string>Trend Following</string>
+   </property>
+  </action>
+  <action name="actionScalping">
+   <property name="text">
+    <string>Scalping</string>
+   </property>
+  </action>
+  <action name="actionRSI_Indexing">
+   <property name="text">
+    <string>RSI Indexing</string>
+   </property>
+  </action>
+  <action name="actionHome">
+   <property name="text">
+    <string>Home</string>
+   </property>
+  </action>
+  <action name="actionGeneral_Recommendation">
+   <property name="text">
+    <string>General Recommendation</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

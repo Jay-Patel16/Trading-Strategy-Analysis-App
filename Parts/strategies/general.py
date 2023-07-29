@@ -22,6 +22,7 @@ def profits(Buy,Sell,data):
 def getWinRate(Profits):
     winnings = [i for i in Profits if i >0]
     winRate = len(winnings)/len(Profits)
+    winRate = round(winRate,2)
     return winRate
 
 def getStockData(asset,startDate,endDate):
@@ -37,3 +38,19 @@ def exportToExcelData(data,asset):
     excelFileName = asset+".xlsx"
     excelFile = xlsxwriter.Workbook(excelFileName)
     data.to_excel(excelFileName,index=False)
+    
+def convertDate(startD, endD):
+    SDate = startD.split('/')
+    EDate = endD.split('/')
+    if int(SDate[0]) <10:
+        SDate[0] = '0'+SDate[0]
+    if int(SDate[1]) <10:
+        SDate[1] = '0'+SDate[1]
+    if int(EDate[0]) <10:
+        EDate[0] = '0'+EDate[0]
+    if int(EDate[1]) <10:
+        EDate[1] = '0'+EDate[1]
+    startDate = SDate[2] + "-"+SDate[0]+'-'+SDate[1]
+    endDate =  EDate[2] + "-"+EDate[0]+'-'+EDate[1]
+    return startDate,endDate
+    

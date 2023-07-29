@@ -15,12 +15,6 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import numpy as np
 
-def TradingViewRec(asset,exchange):
-    stock = TA_Handler(symbol=asset,exchange=exchange,screener='america',interval='5m',timeout=None)
-    rec = stock.get_analysis().summary
-    return (rec['RECOMMENDATION'])
-    
-
 # asset ticker symbol
 def RSI(asset, startD, endD):
     dataframe = yf.download(asset, start = startD, end=endD)
