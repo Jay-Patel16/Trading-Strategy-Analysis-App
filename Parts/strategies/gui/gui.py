@@ -14,36 +14,42 @@ from ScalpingWin import *
 from TrendWin import *
 from GRWin import *
 
+
 class Ui_mainWindow(object):
     def openRSI(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_RSIWin()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def openTrend(self):
         mainWindow.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_TrendWin()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def openScalping(self):
         mainWindow.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_ScalpingWin()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def openGeneral(self):
         mainWindow.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_GRWin()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def openHome(self):
         mainWindow.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_mainWindow()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def setupUi(self, mainWindow):
         mainWindow.setObjectName("mainWindow")
         mainWindow.resize(753, 685)
@@ -55,9 +61,11 @@ class Ui_mainWindow(object):
         mainWindow.setTabletTracking(False)
         mainWindow.setFocusPolicy(QtCore.Qt.NoFocus)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("stockicon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("stockicon.png"),
+                       QtGui.QIcon.Normal, QtGui.QIcon.Off)
         mainWindow.setWindowIcon(icon)
-        mainWindow.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(116, 235, 213, 255), stop:1 rgba(172, 182, 229, 255));")
+        mainWindow.setStyleSheet(
+            "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(116, 235, 213, 255), stop:1 rgba(172, 182, 229, 255));")
         mainWindow.setTabShape(QtWidgets.QTabWidget.Rounded)
         self.centralwidget = QtWidgets.QWidget(mainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -103,7 +111,7 @@ class Ui_mainWindow(object):
         font.setWeight(75)
         self.menubar.setFont(font)
         self.menubar.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-color: rgb(255, 85, 0);")
+                                   "border-color: rgb(255, 85, 0);")
         self.menubar.setObjectName("menubar")
         self.menuStock = QtWidgets.QMenu(self.menubar)
         self.menuStock.setStyleSheet("border-color: rgb(0, 0, 0);")
@@ -124,7 +132,8 @@ class Ui_mainWindow(object):
         self.actionHome.setObjectName("actionHome")
         self.actionHome.triggered.connect(self.openHome)
         self.actionGeneral_Recommendation = QtWidgets.QAction(mainWindow)
-        self.actionGeneral_Recommendation.setObjectName("actionGeneral_Recommendation")
+        self.actionGeneral_Recommendation.setObjectName(
+            "actionGeneral_Recommendation")
         self.actionGeneral_Recommendation.triggered.connect(self.openGeneral)
         self.menuStock.addAction(self.actionTrend_Following)
         self.menuStock.addAction(self.actionScalping)
@@ -139,18 +148,24 @@ class Ui_mainWindow(object):
 
     def retranslateUi(self, mainWindow):
         _translate = QtCore.QCoreApplication.translate
-        mainWindow.setWindowTitle(_translate("mainWindow", "Trading Strategy Analyzer"))
+        mainWindow.setWindowTitle(_translate(
+            "mainWindow", "Trading Strategy Analyzer"))
         self.label.setText(_translate("mainWindow", "Welcome To \n"
-"Trading Strategy Analyzer"))
+                                      "Trading Strategy Analyzer"))
         self.label_2.setText(_translate("mainWindow", "Please Choose One of the \n"
-"Options to Get Started"))
+                                        "Options to Get Started"))
         self.menuStock.setTitle(_translate("mainWindow", "Strategies"))
         self.menuScalping.setTitle(_translate("mainWindow", "Others"))
-        self.actionTrend_Following.setText(_translate("mainWindow", "Trend Following"))
+        self.actionTrend_Following.setText(
+            _translate("mainWindow", "Trend Following"))
         self.actionScalping.setText(_translate("mainWindow", "Scalping"))
-        self.actionRSI_Indexing.setText(_translate("mainWindow", "RSI Indexing"))
+        self.actionRSI_Indexing.setText(
+            _translate("mainWindow", "RSI Indexing"))
         self.actionHome.setText(_translate("mainWindow", "Home"))
-        self.actionGeneral_Recommendation.setText(_translate("mainWindow", "General Recommendation"))
+        self.actionGeneral_Recommendation.setText(
+            _translate("mainWindow", "General Recommendation"))
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

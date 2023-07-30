@@ -17,41 +17,48 @@ from gui import *
 from Scalping import *
 from general import *
 
+
 class Ui_ScalpingWin(object):
     def openRSI(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_RSIWin()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def openTrend(self):
         ScalpingWin.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_TrendWin()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def openScalping(self):
         ScalpingWin.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_ScalpingWin()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def openGeneral(self):
         ScalpingWin.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_GRWin()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def openHome(self):
         ScalpingWin.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_mainWindow()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def setupUi(self, ScalpingWin):
         ScalpingWin.setObjectName("ScalpingWin")
         ScalpingWin.resize(866, 800)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("scalping.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("scalping.jpg"),
+                       QtGui.QIcon.Normal, QtGui.QIcon.Off)
         ScalpingWin.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(ScalpingWin)
         self.centralwidget.setObjectName("centralwidget")
@@ -157,7 +164,8 @@ class Ui_ScalpingWin(object):
         self.actionRSI_Indexing.setObjectName("actionRSI_Indexing")
         self.actionRSI_Indexing.triggered.connect(self.openRSI)
         self.actionGeneral_Recommendation = QtWidgets.QAction(ScalpingWin)
-        self.actionGeneral_Recommendation.setObjectName("actionGeneral_Recommendation")
+        self.actionGeneral_Recommendation.setObjectName(
+            "actionGeneral_Recommendation")
         self.actionGeneral_Recommendation.triggered.connect(self.openGeneral)
         self.actionHome = QtWidgets.QAction(ScalpingWin)
         self.actionHome.setObjectName("actionHome")
@@ -166,7 +174,8 @@ class Ui_ScalpingWin(object):
         self.actionScalping.setObjectName("actionScalping")
         self.actionScalping.triggered.connect(self.openScalping)
         self.actionGeneral_Recommendation_2 = QtWidgets.QAction(ScalpingWin)
-        self.actionGeneral_Recommendation_2.setObjectName("actionGeneral_Recommendation_2")
+        self.actionGeneral_Recommendation_2.setObjectName(
+            "actionGeneral_Recommendation_2")
         self.actionGeneral_Recommendation_2.triggered.connect(self.openGeneral)
         self.menuScalping.addAction(self.actionTrend_Following)
         self.menuScalping.addAction(self.actionRSI_Indexing)
@@ -189,9 +198,9 @@ class Ui_ScalpingWin(object):
         self.label.setText(_translate("ScalpingWin", "Stock Tag"))
         self.lineEdit_3.setPlaceholderText(_translate("ScalpingWin", "0"))
         self.label_2.setText(_translate("ScalpingWin", "Buy/Sell \n"
-"Percentage"))
+                                        "Percentage"))
         self.label_5.setText(_translate("ScalpingWin", "Scalping is the idea of buy when the market dips below a certain percentage \n"
-"and selling once the price has gone above a certain percentage"))
+                                        "and selling once the price has gone above a certain percentage"))
         self.label_8.setText(_translate("ScalpingWin", "End Date"))
         self.label_6.setText(_translate("ScalpingWin", "Days Timeout"))
         self.lineEdit_4.setPlaceholderText(_translate("ScalpingWin", "5"))
@@ -199,12 +208,16 @@ class Ui_ScalpingWin(object):
         self.pushButton.clicked.connect(self.ScalpingOutput)
         self.menuScalping.setTitle(_translate("ScalpingWin", "Strategies"))
         self.menuHome.setTitle(_translate("ScalpingWin", "Others"))
-        self.actionTrend_Following.setText(_translate("ScalpingWin", "Trend Following"))
-        self.actionRSI_Indexing.setText(_translate("ScalpingWin", "RSI Indexing"))
-        self.actionGeneral_Recommendation.setText(_translate("ScalpingWin", "General Recommendation"))
+        self.actionTrend_Following.setText(
+            _translate("ScalpingWin", "Trend Following"))
+        self.actionRSI_Indexing.setText(
+            _translate("ScalpingWin", "RSI Indexing"))
+        self.actionGeneral_Recommendation.setText(
+            _translate("ScalpingWin", "General Recommendation"))
         self.actionHome.setText(_translate("ScalpingWin", "Home"))
         self.actionScalping.setText(_translate("ScalpingWin", "Scalping"))
-        self.actionGeneral_Recommendation_2.setText(_translate("ScalpingWin", "General Recommendation"))
+        self.actionGeneral_Recommendation_2.setText(
+            _translate("ScalpingWin", "General Recommendation"))
 
     def ScalpingOutput(self):
         stock = self.lineEdit.text()
@@ -212,13 +225,14 @@ class Ui_ScalpingWin(object):
         startDate = self.dateEdit_2.text()
         endDate = self.dateEdit.text()
         timeout = self.lineEdit_4.text()
-        startD, endD  = convertDate(startDate,endDate)
-        data,signals = scalping(stock,startD,endD,timeout,buyPSellP)
-        buy,sell = displayEntryExit(data)
-        profitsScalping = profits(buy,sell,data)
+        startD, endD = convertDate(startDate, endDate)
+        data, signals = scalping(stock, startD, endD, timeout, buyPSellP)
+        buy, sell = displayEntryExit(data)
+        profitsScalping = profits(buy, sell, data)
         winRate = getWinRate(profitsScalping)
         self.lineEdit_3.setText(str(winRate) + "%")
-        graphScalping(data,buy,sell)
+        graphScalping(data, buy, sell)
+
 
 if __name__ == "__main__":
     import sys

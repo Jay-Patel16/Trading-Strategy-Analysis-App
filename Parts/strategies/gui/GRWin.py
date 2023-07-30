@@ -24,30 +24,35 @@ class Ui_GRWin(object):
         self.ui.setupUi(self.window)
         self.window.show()
         GRWin.close()
+
     def openTrend(self):
         self.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_TrendWin()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def openScalping(self):
         self.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_ScalpingWin()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def openGeneral(self):
         self.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_GRWin()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def openHome(self):
         self.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_mainWindow()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def setupUi(self, GRWin):
         GRWin.setObjectName("GRWin")
         GRWin.resize(900, 800)
@@ -172,7 +177,8 @@ class Ui_GRWin(object):
         self.actionHome = QtWidgets.QAction(GRWin)
         self.actionHome.setObjectName("actionHome")
         self.actionGeneral_Recommendation = QtWidgets.QAction(GRWin)
-        self.actionGeneral_Recommendation.setObjectName("actionGeneral_Recommendation")
+        self.actionGeneral_Recommendation.setObjectName(
+            "actionGeneral_Recommendation")
         self.actionTrend_Following_2 = QtWidgets.QAction(GRWin)
         self.actionTrend_Following_2.setObjectName("actionTrend_Following_2")
         self.actionTrend_Following_2.triggered.connect(self.openTrend)
@@ -186,7 +192,8 @@ class Ui_GRWin(object):
         self.actionHome_2.setObjectName("actionHome_2")
         self.actionHome_2.triggered.connect(self.openHome)
         self.actionGeneral_Recommendation_2 = QtWidgets.QAction(GRWin)
-        self.actionGeneral_Recommendation_2.setObjectName("actionGeneral_Recommendation_2")
+        self.actionGeneral_Recommendation_2.setObjectName(
+            "actionGeneral_Recommendation_2")
         self.actionGeneral_Recommendation_2.triggered.connect(self.openGeneral)
         self.menuStrategies.addAction(self.actionTrend_Following_2)
         self.menuStrategies.addAction(self.actionScalping_2)
@@ -205,7 +212,7 @@ class Ui_GRWin(object):
         self.label_4.setText(_translate("GRWin", "General Recommendation"))
         self.label_3.setText(_translate("GRWin", "Recommendation"))
         self.label_5.setText(_translate("GRWin", "This will provide a general recommendation of a stock; Buy, Sell, or Hold. \n"
-" In addition, allow you to export Historical Data to excel."))
+                                        " In addition, allow you to export Historical Data to excel."))
         self.pushButton.setText(_translate("GRWin", "Submit"))
         self.pushButton.clicked.connect(self.GROutput)
         self.label.setText(_translate("GRWin", "Stock Tag"))
@@ -217,39 +224,43 @@ class Ui_GRWin(object):
         self.label_7.setText(_translate("GRWin", "End Date"))
         self.label_6.setText(_translate("GRWin", "Start Date"))
         self.checkBox.setText(_translate("GRWin", "Export to Excel"))
-        self.label_8.setText(_translate("GRWin", "Leave Start and End Date Blank, if not exporting to Excel"))
+        self.label_8.setText(_translate(
+            "GRWin", "Leave Start and End Date Blank, if not exporting to Excel"))
         self.menuStrategies.setTitle(_translate("GRWin", "Strategies"))
         self.menuOthers.setTitle(_translate("GRWin", "Others"))
-        self.actionTrend_Following.setText(_translate("GRWin", "Trend Following"))
+        self.actionTrend_Following.setText(
+            _translate("GRWin", "Trend Following"))
         self.actionScalping.setText(_translate("GRWin", "Scalping"))
         self.actionRSI_Indexing.setText(_translate("GRWin", "RSI Indexing"))
         self.actionHome.setText(_translate("GRWin", "Home"))
-        self.actionGeneral_Recommendation.setText(_translate("GRWin", "General Recommendation"))
-        self.actionTrend_Following_2.setText(_translate("GRWin", "Trend Following"))
+        self.actionGeneral_Recommendation.setText(
+            _translate("GRWin", "General Recommendation"))
+        self.actionTrend_Following_2.setText(
+            _translate("GRWin", "Trend Following"))
         self.actionScalping_2.setText(_translate("GRWin", "Scalping"))
         self.actionRSI_Indexing_2.setText(_translate("GRWin", "RSI Indexing"))
         self.actionHome_2.setText(_translate("GRWin", "Home"))
-        self.actionGeneral_Recommendation_2.setText(_translate("GRWin", "General Recommendation"))
+        self.actionGeneral_Recommendation_2.setText(
+            _translate("GRWin", "General Recommendation"))
 
     def GROutput(self):
         stock = self.lineEdit.text()
-        exchange= self.comboBox.currentText()
+        exchange = self.comboBox.currentText()
         startDate = self.dateEdit.text()
         endDate = self.dateEdit_2.text()
         exportExcel = self.checkBox.isChecked()
-        
+
         if stock != "":
             recommendation = TradingViewRec(stock, exchange)
             self.lineEdit_3.setText(recommendation)
-        
+
         stock = stock
         if exportExcel:
-            startD,endD = convertDate(startDate,endDate)
-            stockData = getStockData(stock,startD,endD)
-            exportToExcelData(stockData,stock)
+            startD, endD = convertDate(startDate, endDate)
+            stockData = getStockData(stock, startD, endD)
+            exportToExcelData(stockData, stock)
             fileExplorer = QFileDialog.getOpenFileNames()
-            
-            
+
 
 if __name__ == "__main__":
     import sys

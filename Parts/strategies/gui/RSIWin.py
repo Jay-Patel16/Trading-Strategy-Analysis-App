@@ -16,6 +16,7 @@ from gui import *
 from RSI import *
 from general import *
 
+
 class Ui_RSIWin(object):
     def openRSI(self):
         RSIWin.close()
@@ -23,35 +24,41 @@ class Ui_RSIWin(object):
         self.ui = Ui_RSIWin()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def openTrend(self):
         RSIWin.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_TrendWin()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def openScalping(self):
         RSIWin.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_ScalpingWin()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def openGeneral(self):
         RSIWin.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_GRWin()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def openHome(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_mainWindow()
         self.ui.setupUi(self.window)
         self.window.show()
         RSIWin.close()
+
     def setupUi(self, RSIWin):
         RSIWin.setObjectName("RSIWin")
         RSIWin.resize(900, 800)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("rsi-trading-indicator-icon-with-a-phone-vector-41137647.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(
+            "rsi-trading-indicator-icon-with-a-phone-vector-41137647.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         RSIWin.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(RSIWin)
         self.centralwidget.setObjectName("centralwidget")
@@ -142,7 +149,8 @@ class Ui_RSIWin(object):
         self.actionTrend_Following.setObjectName("actionTrend_Following")
         self.actionTrend_Following.triggered.connect(self.openTrend)
         self.actionGeneral_Recommendation = QtWidgets.QAction(RSIWin)
-        self.actionGeneral_Recommendation.setObjectName("actionGeneral_Recommendation")
+        self.actionGeneral_Recommendation.setObjectName(
+            "actionGeneral_Recommendation")
         self.actionGeneral_Recommendation.triggered.connect(self.openGeneral)
         self.actionRSI_Indexing = QtWidgets.QAction(RSIWin)
         self.actionRSI_Indexing.setObjectName("actionRSI_Indexing")
@@ -166,8 +174,8 @@ class Ui_RSIWin(object):
         RSIWin.setWindowTitle(_translate("RSIWin", "RSI Indexing"))
         self.label_3.setText(_translate("RSIWin", "Win Rate"))
         self.label_5.setText(_translate("RSIWin", "RSI Indexing is an idea of using moving average and RSI calculations over \n"
-"200 days to decide on if a stock is on an upward or downward trend. \n"
-"Leading to an entry or exit of market"))
+                                        "200 days to decide on if a stock is on an upward or downward trend. \n"
+                                        "Leading to an entry or exit of market"))
         self.label_4.setText(_translate("RSIWin", "RSI Indexing"))
         self.label_8.setText(_translate("RSIWin", "End Date"))
         self.lineEdit_3.setPlaceholderText(_translate("RSIWin", "0%"))
@@ -179,23 +187,25 @@ class Ui_RSIWin(object):
         self.menuRSI_Indexing.setTitle(_translate("RSIWin", "Strategies"))
         self.menuHome.setTitle(_translate("RSIWin", "Others"))
         self.actionScalping.setText(_translate("RSIWin", "Scalping"))
-        self.actionTrend_Following.setText(_translate("RSIWin", "Trend Following"))
-        self.actionGeneral_Recommendation.setText(_translate("RSIWin", "General Recommendation"))
+        self.actionTrend_Following.setText(
+            _translate("RSIWin", "Trend Following"))
+        self.actionGeneral_Recommendation.setText(
+            _translate("RSIWin", "General Recommendation"))
         self.actionRSI_Indexing.setText(_translate("RSIWin", "RSI Indexing"))
         self.actionHome.setText(_translate("RSIWin", "Home"))
-    
+
     def RSIOutput(self):
         stock = self.lineEdit.text()
         startDate = self.dateEdit_2.text()
         endDate = self.dateEdit.text()
-        startD, endD = convertDate(startDate,endDate)
-        dataRSI = RSI(stock,startD,endD)
-        buy,sell = getSignals(dataRSI)
-        profitsRSI = profits(buy,sell,dataRSI)
+        startD, endD = convertDate(startDate, endDate)
+        dataRSI = RSI(stock, startD, endD)
+        buy, sell = getSignals(dataRSI)
+        profitsRSI = profits(buy, sell, dataRSI)
         winRate = getWinRate(profitsRSI)
         self.lineEdit_3.setText(str(winRate) + "%")
-        graphRSI(dataRSI,buy,sell)
-        
+        graphRSI(dataRSI, buy, sell)
+
 
 if __name__ == "__main__":
     import sys

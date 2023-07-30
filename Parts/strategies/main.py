@@ -23,7 +23,7 @@ from gui import *
 
 def main():
     gui()
-    
+
     # stock = input("Which stock would you like to test:")
     # # data = yf.download(stock,start = '2023-07-11', end= '2023-07-12', interval="1m")
     # # print(data)
@@ -35,10 +35,10 @@ def main():
     # print(winrate)
     # # dataTime = getStockData('AMD','2015-01-31','PRESENT')
     # # dataF,signals = scalping(stock)
-    
+
     # # exportToExcelData(dataTime,stock)
     # # Buy,Sell = displayEntryExit(dataF)
-    
+
     # # profitsScalping = profits(Buy,Sell,dataF)
     # # print(profitsScalping)
     # # winrate = getWinRate(profitsScalping)
@@ -52,9 +52,9 @@ def main():
     # # print(profitsRSI)
     # # winrate = getWinRate(profitsRSI)
     # # print(winrate)
-    
-   
+
     # # #exportToExcelData(dataf,stock)
-    
+
+
 if __name__ == "__main__":
     main()
