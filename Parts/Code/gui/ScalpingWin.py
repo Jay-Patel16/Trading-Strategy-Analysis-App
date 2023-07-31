@@ -49,7 +49,7 @@ class Ui_ScalpingWin(object):
 
     def setupUi(self, ScalpingWin):
         ScalpingWin.setObjectName("ScalpingWin")
-        ScalpingWin.resize(866, 800)
+        ScalpingWin.resize(900, 460)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("scalping.jpg"),
                        QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -66,7 +66,7 @@ class Ui_ScalpingWin(object):
         self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
-        self.label_4.setGeometry(QtCore.QRect(340, 40, 271, 41))
+        self.label_4.setGeometry(QtCore.QRect(320, 40, 271, 41))
         font = QtGui.QFont()
         font.setPointSize(20)
         font.setBold(True)
@@ -100,7 +100,7 @@ class Ui_ScalpingWin(object):
         self.dateEdit.setGeometry(QtCore.QRect(460, 230, 110, 22))
         self.dateEdit.setObjectName("dateEdit")
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        self.label_5.setGeometry(QtCore.QRect(140, 80, 671, 51))
+        self.label_5.setGeometry(QtCore.QRect(120, 80, 671, 51))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
@@ -131,7 +131,7 @@ class Ui_ScalpingWin(object):
         self.lineEdit_4.setGeometry(QtCore.QRect(750, 170, 113, 22))
         self.lineEdit_4.setObjectName("lineEdit_4")
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(410, 280, 93, 28))
+        self.pushButton.setGeometry(QtCore.QRect(700, 227, 93, 28))
         self.pushButton.setObjectName("pushButton")
         ScalpingWin.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(ScalpingWin)

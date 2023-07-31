@@ -50,7 +50,7 @@ class Ui_GRWin(object):
 
     def setupUi(self, GRWin):
         GRWin.setObjectName("GRWin")
-        GRWin.resize(900, 800)
+        GRWin.resize(930, 530)
         self.centralwidget = QtWidgets.QWidget(GRWin)
         self.centralwidget.setObjectName("centralwidget")
         self.label_4 = QtWidgets.QLabel(self.centralwidget)

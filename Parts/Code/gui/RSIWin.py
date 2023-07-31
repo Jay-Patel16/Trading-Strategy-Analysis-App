@@ -49,7 +49,7 @@ class Ui_RSIWin(object):
 
     def setupUi(self, RSIWin):
         RSIWin.setObjectName("RSIWin")
-        RSIWin.resize(900, 800)
+        RSIWin.resize(960, 430)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(
             "rsi-trading-indicator-icon-with-a-phone-vector-41137647.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
