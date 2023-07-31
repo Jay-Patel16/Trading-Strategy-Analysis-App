@@ -10,45 +10,40 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
-from RSIWin import *
-from ScalpingWin import *
-from TrendWin import *
-from gui import *
-from general import *
 
 
 class Ui_GRWin(object):
     def openRSI(self):
         self.window = QtWidgets.QMainWindow()
+        from RSIWin import Ui_RSIWin
         self.ui = Ui_RSIWin()
         self.ui.setupUi(self.window)
         self.window.show()
         GRWin.close()
 
     def openTrend(self):
-        self.close()
         self.window = QtWidgets.QMainWindow()
+        from TrendWin import Ui_TrendWin
         self.ui = Ui_TrendWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openScalping(self):
-        self.close()
         self.window = QtWidgets.QMainWindow()
+        from ScalpingWin import Ui_ScalpingWin
         self.ui = Ui_ScalpingWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openGeneral(self):
-        self.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_GRWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openHome(self):
-        self.close()
         self.window = QtWidgets.QMainWindow()
+        from gui import Ui_mainWindow
         self.ui = Ui_mainWindow()
         self.ui.setupUi(self.window)
         self.window.show()
@@ -152,6 +147,7 @@ class Ui_GRWin(object):
         self.dateEdit_2.setObjectName("dateEdit_2")
         GRWin.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(GRWin)
+        self.menubar.setStyleSheet("background-color: rgb(116, 235, 213);")
         self.menubar.setGeometry(QtCore.QRect(0, 0, 900, 25))
         font = QtGui.QFont()
         font.setFamily("Arial")
@@ -161,8 +157,12 @@ class Ui_GRWin(object):
         self.menubar.setFont(font)
         self.menubar.setObjectName("menubar")
         self.menuStrategies = QtWidgets.QMenu(self.menubar)
+        self.menuStrategies.setStyleSheet(
+            "background-color: rgb(172, 182, 229);")
         self.menuStrategies.setObjectName("menuStrategies")
         self.menuOthers = QtWidgets.QMenu(self.menubar)
+        self.menuOthers.setStyleSheet(
+            "background-color: rgb(172, 182, 229);")
         self.menuOthers.setObjectName("menuOthers")
         GRWin.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(GRWin)
@@ -208,7 +208,7 @@ class Ui_GRWin(object):
 
     def retranslateUi(self, GRWin):
         _translate = QtCore.QCoreApplication.translate
-        GRWin.setWindowTitle(_translate("GRWin", "MainWindow"))
+        GRWin.setWindowTitle(_translate("GRWin", "General Recommendation"))
         self.label_4.setText(_translate("GRWin", "General Recommendation"))
         self.label_3.setText(_translate("GRWin", "Recommendation"))
         self.label_5.setText(_translate("GRWin", "This will provide a general recommendation of a stock; Buy, Sell, or Hold. \n"
@@ -244,6 +244,7 @@ class Ui_GRWin(object):
             _translate("GRWin", "General Recommendation"))
 
     def GROutput(self):
+        from general import TradingViewRec, convertDate, getStockData, exportToExcelData
         stock = self.lineEdit.text()
         exchange = self.comboBox.currentText()
         startDate = self.dateEdit.text()

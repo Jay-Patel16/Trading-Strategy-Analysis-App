@@ -144,12 +144,11 @@ Options to Get Started</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);
-border-color: rgb(255, 85, 0);</string>
+    <string notr="true">background-color: rgb(116, 235, 213);</string>
    </property>
    <widget class="QMenu" name="menuStock">
     <property name="styleSheet">
-     <string notr="true">border-color: rgb(0, 0, 0);</string>
+     <string notr="true">background-color: rgb(172, 182, 229);</string>
     </property>
     <property name="title">
      <string>Strategies</string>
@@ -159,6 +158,9 @@ border-color: rgb(255, 85, 0);</string>
     <addaction name="actionRSI_Indexing"/>
    </widget>
    <widget class="QMenu" name="menuScalping">
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(172, 182, 229);</string>
+    </property>
     <property name="title">
      <string>Others</string>
     </property>

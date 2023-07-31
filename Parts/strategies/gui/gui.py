@@ -9,42 +9,39 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from RSIWin import *
-from ScalpingWin import *
-from TrendWin import *
-from GRWin import *
 
 
 class Ui_mainWindow(object):
     def openRSI(self):
         self.window = QtWidgets.QMainWindow()
+        from RSIWin import Ui_RSIWin
         self.ui = Ui_RSIWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openTrend(self):
-        mainWindow.close()
+
         self.window = QtWidgets.QMainWindow()
+        from TrendWin import Ui_TrendWin
         self.ui = Ui_TrendWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openScalping(self):
-        mainWindow.close()
         self.window = QtWidgets.QMainWindow()
+        from ScalpingWin import Ui_ScalpingWin
         self.ui = Ui_ScalpingWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openGeneral(self):
-        mainWindow.close()
         self.window = QtWidgets.QMainWindow()
+        from GRWin import Ui_GRWin
         self.ui = Ui_GRWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openHome(self):
-        mainWindow.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_mainWindow()
         self.ui.setupUi(self.window)
@@ -110,13 +107,14 @@ class Ui_mainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.menubar.setFont(font)
-        self.menubar.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-                                   "border-color: rgb(255, 85, 0);")
+        self.menubar.setStyleSheet("background-color: rgb(116, 235, 213);")
         self.menubar.setObjectName("menubar")
         self.menuStock = QtWidgets.QMenu(self.menubar)
-        self.menuStock.setStyleSheet("border-color: rgb(0, 0, 0);")
+        self.menuStock.setStyleSheet("background-color: rgb(172, 182, 229);")
         self.menuStock.setObjectName("menuStock")
         self.menuScalping = QtWidgets.QMenu(self.menubar)
+        self.menuScalping.setStyleSheet(
+            "background-color: rgb(172, 182, 229);")
         self.menuScalping.setObjectName("menuScalping")
         mainWindow.setMenuBar(self.menubar)
         self.actionTrend_Following = QtWidgets.QAction(mainWindow)

@@ -9,46 +9,40 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from RSIWin import *
-from ScalpingWin import *
-from TrendWin import *
-from GRWin import *
-from gui import *
-from Scalping import *
-from general import *
 
 
 class Ui_ScalpingWin(object):
     def openRSI(self):
         self.window = QtWidgets.QMainWindow()
+        from RSIWin import Ui_RSIWin
         self.ui = Ui_RSIWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openTrend(self):
-        ScalpingWin.close()
         self.window = QtWidgets.QMainWindow()
+        from TrendWin import Ui_TrendWin
         self.ui = Ui_TrendWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openScalping(self):
-        ScalpingWin.close()
         self.window = QtWidgets.QMainWindow()
+        from ScalpingWin import Ui_ScalpingWin
         self.ui = Ui_ScalpingWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openGeneral(self):
-        ScalpingWin.close()
         self.window = QtWidgets.QMainWindow()
+        from GRWin import Ui_GRWin
         self.ui = Ui_GRWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openHome(self):
-        ScalpingWin.close()
         self.window = QtWidgets.QMainWindow()
+        from gui import Ui_mainWindow
         self.ui = Ui_mainWindow()
         self.ui.setupUi(self.window)
         self.window.show()
@@ -141,6 +135,8 @@ class Ui_ScalpingWin(object):
         self.pushButton.setObjectName("pushButton")
         ScalpingWin.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(ScalpingWin)
+        self.menubar.setStyleSheet(
+            "background-color: rgb(116, 235, 213);")
         self.menubar.setGeometry(QtCore.QRect(0, 0, 866, 25))
         font = QtGui.QFont()
         font.setFamily("Arial")
@@ -150,8 +146,12 @@ class Ui_ScalpingWin(object):
         self.menubar.setFont(font)
         self.menubar.setObjectName("menubar")
         self.menuScalping = QtWidgets.QMenu(self.menubar)
+        self.menuScalping.setStyleSheet(
+            "background-color: rgb(172, 182, 229);")
         self.menuScalping.setObjectName("menuScalping")
         self.menuHome = QtWidgets.QMenu(self.menubar)
+        self.menuHome.setStyleSheet(
+            "background-color: rgb(172, 182, 229);")
         self.menuHome.setObjectName("menuHome")
         ScalpingWin.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(ScalpingWin)
@@ -220,6 +220,8 @@ class Ui_ScalpingWin(object):
             _translate("ScalpingWin", "General Recommendation"))
 
     def ScalpingOutput(self):
+        from Scalping import scalping, displayEntryExit, graphScalping
+        from general import convertDate, profits, getWinRate
         stock = self.lineEdit.text()
         buyPSellP = self.lineEdit_2.text()
         startDate = self.dateEdit_2.text()

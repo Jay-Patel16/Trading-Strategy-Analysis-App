@@ -9,47 +9,40 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from RSIWin import *
-from ScalpingWin import *
-from TrendWin import *
-from GRWin import *
-from gui import *
-from general import *
-from trendFollowing import *
 
 
 class Ui_TrendWin(object):
     def openRSI(self):
-        TrendWin.close()
         self.window = QtWidgets.QMainWindow()
+        from RSIWin import Ui_RSIWin
         self.ui = Ui_RSIWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openTrend(self):
-        TrendWin.close()
         self.window = QtWidgets.QMainWindow()
+        from TrendWin import Ui_TrendWin
         self.ui = Ui_TrendWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openScalping(self):
-        TrendWin.close()
         self.window = QtWidgets.QMainWindow()
+        from ScalpingWin import Ui_ScalpingWin
         self.ui = Ui_ScalpingWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openGeneral(self):
-        TrendWin.close()
         self.window = QtWidgets.QMainWindow()
+        from GRWin import Ui_GRWin
         self.ui = Ui_GRWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openHome(self):
-        TrendWin.close()
         self.window = QtWidgets.QMainWindow()
+        from gui import Ui_mainWindow
         self.ui = Ui_mainWindow()
         self.ui.setupUi(self.window)
         self.window.show()
@@ -165,6 +158,8 @@ class Ui_TrendWin(object):
         self.pushButton.setObjectName("pushButton")
         TrendWin.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(TrendWin)
+        self.menubar.setStyleSheet(
+            "background-color: rgb(116, 235, 213);")
         self.menubar.setGeometry(QtCore.QRect(0, 0, 900, 25))
         font = QtGui.QFont()
         font.setFamily("Arial")
@@ -174,8 +169,12 @@ class Ui_TrendWin(object):
         self.menubar.setFont(font)
         self.menubar.setObjectName("menubar")
         self.menuStrategies = QtWidgets.QMenu(self.menubar)
+        self.menuStrategies.setStyleSheet(
+            "background-color: rgb(172, 182, 229);")
         self.menuStrategies.setObjectName("menuStrategies")
         self.menuOthers = QtWidgets.QMenu(self.menubar)
+        self.menuOthers.setStyleSheet(
+            "background-color: rgb(172, 182, 229);")
         self.menuOthers.setObjectName("menuOthers")
         TrendWin.setMenuBar(self.menubar)
         self.actionScapling = QtWidgets.QAction(TrendWin)
@@ -191,15 +190,20 @@ class Ui_TrendWin(object):
         self.actionTrend_Following.setObjectName("actionTrend_Following")
         self.actionScalping = QtWidgets.QAction(TrendWin)
         self.actionScalping.setObjectName("actionScalping")
+        self.actionScalping.triggered.connect(self.openScalping)
         self.actionRSI = QtWidgets.QAction(TrendWin)
         self.actionRSI.setObjectName("actionRSI")
+        self.actionRSI.triggered.connect(self.openRSI)
         self.actionTrend_Following_2 = QtWidgets.QAction(TrendWin)
         self.actionTrend_Following_2.setObjectName("actionTrend_Following_2")
+        self.actionTrend_Following_2.triggered.connect(self.openTrend)
         self.actionHome_2 = QtWidgets.QAction(TrendWin)
         self.actionHome_2.setObjectName("actionHome_2")
+        self.actionHome_2.triggered.connect(self.openHome)
         self.actionGeneral_Recommendation_2 = QtWidgets.QAction(TrendWin)
         self.actionGeneral_Recommendation_2.setObjectName(
             "actionGeneral_Recommendation_2")
+        self.actionGeneral_Recommendation_2.triggered.connect(self.openGeneral)
         self.menuStrategies.addAction(self.actionScalping)
         self.menuStrategies.addAction(self.actionRSI)
         self.menuStrategies.addAction(self.actionTrend_Following_2)
@@ -248,6 +252,8 @@ class Ui_TrendWin(object):
             _translate("TrendWin", "General Recommendation"))
 
     def trendOutput(self):
+        from general import convertDate
+        from trendFollowing import rangeTrendFollowing, oneDayData, graphTrendOneDay, trendFollowing
         stock = self.lineEdit.text()
         buyPSellP = self.lineEdit_2.text()
         startDate = self.dateEdit_2.text()

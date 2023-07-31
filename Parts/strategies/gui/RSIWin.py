@@ -9,49 +9,42 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from ScalpingWin import *
-from TrendWin import *
-from GRWin import *
-from gui import *
-from RSI import *
-from general import *
 
 
 class Ui_RSIWin(object):
     def openRSI(self):
-        RSIWin.close()
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_RSIWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openTrend(self):
-        RSIWin.close()
         self.window = QtWidgets.QMainWindow()
+        from TrendWin import Ui_TrendWin
         self.ui = Ui_TrendWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openScalping(self):
-        RSIWin.close()
         self.window = QtWidgets.QMainWindow()
+        from ScalpingWin import Ui_ScalpingWin
         self.ui = Ui_ScalpingWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openGeneral(self):
-        RSIWin.close()
         self.window = QtWidgets.QMainWindow()
+        from GRWin import Ui_GRWin
         self.ui = Ui_GRWin()
         self.ui.setupUi(self.window)
         self.window.show()
 
     def openHome(self):
         self.window = QtWidgets.QMainWindow()
+        from gui import Ui_mainWindow
         self.ui = Ui_mainWindow()
         self.ui.setupUi(self.window)
         self.window.show()
-        RSIWin.close()
 
     def setupUi(self, RSIWin):
         RSIWin.setObjectName("RSIWin")
@@ -126,6 +119,8 @@ class Ui_RSIWin(object):
         self.label.setObjectName("label")
         RSIWin.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(RSIWin)
+        self.menuHome.setStyleSheet(
+            "background-color: rgb(116, 235, 213);")
         self.menubar.setGeometry(QtCore.QRect(0, 0, 900, 25))
         font = QtGui.QFont()
         font.setFamily("Arial")
@@ -135,8 +130,12 @@ class Ui_RSIWin(object):
         self.menubar.setFont(font)
         self.menubar.setObjectName("menubar")
         self.menuRSI_Indexing = QtWidgets.QMenu(self.menubar)
+        self.menuRSI_Indexing.setStyleSheet(
+            "background-color: rgb(172, 182, 229);")
         self.menuRSI_Indexing.setObjectName("menuRSI_Indexing")
         self.menuHome = QtWidgets.QMenu(self.menubar)
+        self.menuHome.setStyleSheet(
+            "background-color: rgb(172, 182, 229);")
         self.menuHome.setObjectName("menuHome")
         RSIWin.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(RSIWin)
@@ -195,6 +194,8 @@ class Ui_RSIWin(object):
         self.actionHome.setText(_translate("RSIWin", "Home"))
 
     def RSIOutput(self):
+        from general import convertDate, getWinRate, profits
+        from RSI import RSI, graphRSI, getSignals
         stock = self.lineEdit.text()
         startDate = self.dateEdit_2.text()
         endDate = self.dateEdit.text()
