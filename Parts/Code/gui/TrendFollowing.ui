@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TrendWin</class>
+ <widget class="QMainWindow" name="TrendWin">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>900</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Trend Following</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>trend.jpg</normaloff>trend.jpg</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>90</y>
+      <width>671</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="text">
+     <string>Trend Following is the strategy of following is the idea of understanding 
+price trends to determine when to enter and exit the market.</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_3">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>410</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="placeholderText">
+     <string>0%</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>40</y>
+      <width>271</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Trend Following</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>190</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>8514oem</family>
+     </font>
+    </property>
+    <property name="text">
+     <string>Start Date</string>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="dateEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>190</y>
+      <width>110</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>190</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>8514oem</family>
+     </font>
+    </property>
+    <property name="text">
+     <string>Stock Tag</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>250</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>0%</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>190</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="dateEdit">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>250</y>
+      <width>110</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>250</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>8514oem</family>
+     </font>
+    </property>
+    <property name="text">
+     <string>End Date</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>240</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>8514oem</family>
+     </font>
+    </property>
+    <property name="text">
+     <string>Buy/Sell 
+Percentage</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>410</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>8514oem</family>
+     </font>
+    </property>
+    <property name="text">
+     <string>Win Rate</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>130</y>
+      <width>381</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>Dates need to be from LAST 30 DAYS
+If choosing one day, END DATE would be the NEXT DAY </string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>290</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>8514oem</family>
+     </font>
+    </property>
+    <property name="text">
+     <string>Range of Days</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>350</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Submit</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>300</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>8514oem</family>
+     </font>
+    </property>
+    <property name="text">
+     <string>Start Hour</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_4">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>300</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>900</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <widget class="QMenu" name="menuStrategies">
+    <property name="title">
+     <string>Strategies</string>
+    </property>
+    <addaction name="actionScalping"/>
+    <addaction name="actionRSI"/>
+    <addaction name="actionTrend_Following_2"/>
+   </widget>
+   <widget class="QMenu" name="menuOthers">
+    <property name="title">
+     <string>Others</string>
+    </property>
+    <addaction name="actionHome_2"/>
+    <addaction name="actionGeneral_Recommendation_2"/>
+   </widget>
+   <addaction name="menuStrategies"/>
+   <addaction name="menuOthers"/>
+  </widget>
+  <action name="actionScapling">
+   <property name="text">
+    <string>Scalping</string>
+   </property>
+  </action>
+  <action name="actionRSI_Indexing">
+   <property name="text">
+    <string>RSI Indexing</string>
+   </property>
+  </action>
+  <action name="actionGeneral_Recommendation">
+   <property name="text">
+    <string>General Recommendation</string>
+   </property>
+  </action>
+  <action name="actionHome">
+   <property name="text">
+    <string>Home</string>
+   </property>
+  </action>
+  <action name="actionTrend_Following">
+   <property name="text">
+    <string>Trend Following</string>
+   </property>
+  </action>
+  <action name="actionScalping">
+   <property name="text">
+    <string>Scalping</string>
+   </property>
+  </action>
+  <action name="actionRSI">
+   <property name="text">
+    <string>RSI Indexing</string>
+   </property>
+  </action>
+  <action name="actionTrend_Following_2">
+   <property name="text">
+    <string>Trend Following</string>
+   </property>
+  </action>
+  <action name="actionHome_2">
+   <property name="text">
+    <string>Home</string>
+   </property>
+  </action>
+  <action name="actionGeneral_Recommendation_2">
+   <property name="text">
+    <string>General Recommendation</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
