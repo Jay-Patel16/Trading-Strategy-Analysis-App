@@ -227,8 +227,13 @@ class Ui_ScalpingWin(object):
             _translate("ScalpingWin", "General Recommendation"))
 
     def ScalpingOutput(self):
-        from Scalping import scalping, displayEntryExit, graphScalping
-        from general import convertDate, profits, getWinRate
+        import sys
+        import os
+        current = os.path.dirname(os.path.realpath(__file__))
+        parent = os.path.dirname(current)
+        sys.path.append(parent)
+        from Strategies.general import convertDate, getWinRate, profits
+        from Strategies.Scalping import scalping, displayEntryExit, graphScalping
         stock = self.lineEdit.text()
         buyPSellP = self.lineEdit_2.text()
         startDate = self.dateEdit_2.text()

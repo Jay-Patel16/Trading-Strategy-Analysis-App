@@ -200,8 +200,13 @@ class Ui_RSIWin(object):
         self.actionHome.setText(_translate("RSIWin", "Home"))
 
     def RSIOutput(self):
-        from general import convertDate, getWinRate, profits
-        from RSI import RSI, graphRSI, getSignals
+        import sys
+        import os
+        current = os.path.dirname(os.path.realpath(__file__))
+        parent = os.path.dirname(current)
+        sys.path.append(parent)
+        from Strategies.general import convertDate, getWinRate, profits
+        from Strategies.RSI import RSI, graphRSI, getSignals
         stock = self.lineEdit.text()
         startDate = self.dateEdit_2.text()
         endDate = self.dateEdit.text()

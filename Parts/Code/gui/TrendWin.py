@@ -257,8 +257,13 @@ class Ui_TrendWin(object):
             _translate("TrendWin", "General Recommendation"))
 
     def trendOutput(self):
-        from general import convertDate
-        from trendFollowing import rangeTrendFollowing, oneDayData, graphTrendOneDay, trendFollowing
+        import sys
+        import os
+        current = os.path.dirname(os.path.realpath(__file__))
+        parent = os.path.dirname(current)
+        sys.path.append(parent)
+        from Strategies.general import convertDate
+        from Strategies.trendFollowing import rangeTrendFollowing, oneDayData, graphTrendOneDay, trendFollowing
         stock = self.lineEdit.text()
         buyPSellP = self.lineEdit_2.text()
         startDate = self.dateEdit_2.text()
