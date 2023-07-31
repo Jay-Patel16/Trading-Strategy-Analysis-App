@@ -20,7 +20,6 @@ class Ui_mainWindow(object):
         self.window.show()
 
     def openTrend(self):
-
         self.window = QtWidgets.QMainWindow()
         from TrendWin import Ui_TrendWin
         self.ui = Ui_TrendWin()
@@ -120,19 +119,24 @@ class Ui_mainWindow(object):
         self.actionTrend_Following = QtWidgets.QAction(mainWindow)
         self.actionTrend_Following.setObjectName("actionTrend_Following")
         self.actionTrend_Following.triggered.connect(self.openTrend)
+        self.actionTrend_Following.triggered.connect(mainWindow.close)
         self.actionScalping = QtWidgets.QAction(mainWindow)
         self.actionScalping.setObjectName("actionScalping")
         self.actionScalping.triggered.connect(self.openScalping)
+        self.actionScalping.triggered.connect(mainWindow.close)
         self.actionRSI_Indexing = QtWidgets.QAction(mainWindow)
         self.actionRSI_Indexing.setObjectName("actionRSI_Indexing")
         self.actionRSI_Indexing.triggered.connect(self.openRSI)
+        self.actionRSI_Indexing.triggered.connect(mainWindow.close)
         self.actionHome = QtWidgets.QAction(mainWindow)
         self.actionHome.setObjectName("actionHome")
         self.actionHome.triggered.connect(self.openHome)
+        self.actionHome.triggered.connect(mainWindow.close)
         self.actionGeneral_Recommendation = QtWidgets.QAction(mainWindow)
         self.actionGeneral_Recommendation.setObjectName(
             "actionGeneral_Recommendation")
         self.actionGeneral_Recommendation.triggered.connect(self.openGeneral)
+        self.actionGeneral_Recommendation.triggered.connect(mainWindow.close)
         self.menuStock.addAction(self.actionTrend_Following)
         self.menuStock.addAction(self.actionScalping)
         self.menuStock.addAction(self.actionRSI_Indexing)

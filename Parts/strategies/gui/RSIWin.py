@@ -40,6 +40,7 @@ class Ui_RSIWin(object):
         self.window.show()
 
     def openHome(self):
+        RSIWin.hide()
         self.window = QtWidgets.QMainWindow()
         from gui import Ui_mainWindow
         self.ui = Ui_mainWindow()
@@ -119,7 +120,7 @@ class Ui_RSIWin(object):
         self.label.setObjectName("label")
         RSIWin.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(RSIWin)
-        self.menuHome.setStyleSheet(
+        self.menubar.setStyleSheet(
             "background-color: rgb(116, 235, 213);")
         self.menubar.setGeometry(QtCore.QRect(0, 0, 900, 25))
         font = QtGui.QFont()
@@ -144,19 +145,24 @@ class Ui_RSIWin(object):
         self.actionScalping = QtWidgets.QAction(RSIWin)
         self.actionScalping.setObjectName("actionScalping")
         self.actionScalping.triggered.connect(self.openScalping)
+        self.actionScalping.triggered.connect(RSIWin.close)
         self.actionTrend_Following = QtWidgets.QAction(RSIWin)
         self.actionTrend_Following.setObjectName("actionTrend_Following")
         self.actionTrend_Following.triggered.connect(self.openTrend)
+        self.actionTrend_Following.triggered.connect(RSIWin.close)
         self.actionGeneral_Recommendation = QtWidgets.QAction(RSIWin)
         self.actionGeneral_Recommendation.setObjectName(
             "actionGeneral_Recommendation")
         self.actionGeneral_Recommendation.triggered.connect(self.openGeneral)
+        self.actionGeneral_Recommendation.triggered.connect(RSIWin.close)
         self.actionRSI_Indexing = QtWidgets.QAction(RSIWin)
         self.actionRSI_Indexing.setObjectName("actionRSI_Indexing")
         self.actionRSI_Indexing.triggered.connect(self.openRSI)
+        self.actionRSI_Indexing.triggered.connect(RSIWin.close)
         self.actionHome = QtWidgets.QAction(RSIWin)
         self.actionHome.setObjectName("actionHome")
         self.actionHome.triggered.connect(self.openHome)
+        self.actionHome.triggered.connect(RSIWin.close)
         self.menuRSI_Indexing.addAction(self.actionScalping)
         self.menuRSI_Indexing.addAction(self.actionTrend_Following)
         self.menuRSI_Indexing.addAction(self.actionRSI_Indexing)
