@@ -14,7 +14,6 @@ import pandas_datareader as web
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import numpy as np
-from general import *
 
 
 def oneDayData(asset, startDate, EndDate):
@@ -23,7 +22,7 @@ def oneDayData(asset, startDate, EndDate):
     return dataOneDay
 
 
-def trendFollowing(data, buyPercent, sellPercent, hour):
+def trendFollowingOneDay(data, buyPercent, sellPercent, hour):
     buy = []
     sell = []
     profits = 0
@@ -84,10 +83,10 @@ def rangeTrendFollowing(asset, startDate, endDate, buyP, sellP, startHour):
     for i in range(1, len(dataRange)-1):
         dataOneDay = oneDayData(
             asset, dataRange.iloc[i].name, dataRange.iloc[i+1].name)
-        buy, sell, profits = trendFollowing(dataOneDay, buyP, sellP, startHour)
+        buy, sell, profits = trendFollowingOneDay(
+            dataOneDay, buyP, sellP, startHour)
         profitsOverall.append(profits)
-    winRate = getWinRate(profitsOverall)
-    return profitsOverall, winRate
+    return profitsOverall
 
 
 def graphTrendOneDay(buy, sell, data):

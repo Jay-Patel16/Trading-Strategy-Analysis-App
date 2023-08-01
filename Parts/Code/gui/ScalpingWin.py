@@ -235,15 +235,15 @@ class Ui_ScalpingWin(object):
         from Strategies.general import convertDate, getWinRate, profits
         from Strategies.Scalping import scalping, displayEntryExit, graphScalping
         stock = self.lineEdit.text()
-        buyPSellP = self.lineEdit_2.text()
+        buyPSellP = int(self.lineEdit_2.text())
         startDate = self.dateEdit_2.text()
         endDate = self.dateEdit.text()
-        timeout = self.lineEdit_4.text()
+        timeout = int(self.lineEdit_4.text())
         startD, endD = convertDate(startDate, endDate)
         data, signals = scalping(stock, startD, endD, timeout, buyPSellP)
         buy, sell = displayEntryExit(data)
         profitsScalping = profits(buy, sell, data)
-        winRate = getWinRate(profitsScalping)
+        winRate = getWinRate(profitsScalping) * 100
         self.lineEdit_3.setText(str(winRate) + "%")
         graphScalping(data, buy, sell)
 
