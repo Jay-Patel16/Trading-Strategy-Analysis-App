@@ -21,3 +21,7 @@ To make sure you have started the application properly, below a screenshot is pr
 - Please follow the directions on the windows to have proper input entry!
 
 ![](Parts/images/Starting%20GUI.PNG)
+
+# Tech Stack
+- Python (Main Application)
+- PyQt (GUI Design)
