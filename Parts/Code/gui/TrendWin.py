@@ -109,7 +109,6 @@ class Ui_TrendWin(object):
         self.label_9.setObjectName("label_9")
         self.lineEdit_4 = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_4.setGeometry(QtCore.QRect(310, 300, 113, 22))
-        self.lineEdit_4.setReadOnly(True)
         self.lineEdit_4.setObjectName("lineEdit_4")
         self.lineEdit_2 = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_2.setGeometry(QtCore.QRect(310, 250, 113, 22))
@@ -239,6 +238,7 @@ class Ui_TrendWin(object):
                                         "If choosing one day, END DATE would be the NEXT DAY\n Win Rate presented only with RANGE OF DAYS "))
         self.checkBox.setText(_translate("TrendWin", "Range of Days"))
         self.pushButton.setText(_translate("TrendWin", "Submit"))
+        self.pushButton.clicked.connect(self.trendOutput)
         self.menuStrategies.setTitle(_translate("TrendWin", "Strategies"))
         self.menuOthers.setTitle(_translate("TrendWin", "Others"))
         self.actionScapling.setText(_translate("TrendWin", "Scalping"))
@@ -262,24 +262,31 @@ class Ui_TrendWin(object):
         current = os.path.dirname(os.path.realpath(__file__))
         parent = os.path.dirname(current)
         sys.path.append(parent)
-        from Strategies.general import convertDate
-        from Strategies.trendFollowing import rangeTrendFollowing, oneDayData, graphTrendOneDay, trendFollowing
+        from Strategies.general import convertDate, getWinRate
+        from Strategies.trendFollowing import rangeTrendFollowing, oneDayData, graphTrendOneDay, trendFollowingOneDay
         stock = self.lineEdit.text()
-        buyPSellP = self.lineEdit_2.text()
+        buyPSellP = float(self.lineEdit_2.text())
         startDate = self.dateEdit_2.text()
         endDate = self.dateEdit.text()
         startD, endD = convertDate(startDate, endDate)
         rangeChecked = self.checkBox.isChecked()
-        starthour = self.lineEdit_4.text()
+        starthour = int(self.lineEdit_4.text())
 
         if rangeChecked:
-            profitsTrend, winRateTrend = rangeTrendFollowing(
+            profitsTrend = rangeTrendFollowing(
                 stock, startD, endD, buyPSellP, buyPSellP, starthour)
-            self.lineEdit_4.setText(str(winRateTrend) + "%")
+            print(profitsTrend)
+            winRateTrend = getWinRate(profitsTrend) * 100
+            self.lineEdit_3.setText(str(winRateTrend) + "%")
         else:
             dataTrend = oneDayData(stock, startD, endD)
-            buy, sell, profits = trendFollowing(
+            buy, sell, profits = trendFollowingOneDay(
                 dataTrend, buyPSellP, buyPSellP, starthour)
+            print(profits)
+            if profits > 0:
+                self.lineEdit_3.setText("100%")
+            else:
+                self.lineEdit_3.setText("0%")
             graphTrendOneDay(buy, sell, dataTrend)
 
 

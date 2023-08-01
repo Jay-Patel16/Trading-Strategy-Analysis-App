@@ -40,7 +40,6 @@ class Ui_RSIWin(object):
         self.window.show()
 
     def openHome(self):
-        RSIWin.hide()
         self.window = QtWidgets.QMainWindow()
         from gui import Ui_mainWindow
         self.ui = Ui_mainWindow()
@@ -214,7 +213,7 @@ class Ui_RSIWin(object):
         dataRSI = RSI(stock, startD, endD)
         buy, sell = getSignals(dataRSI)
         profitsRSI = profits(buy, sell, dataRSI)
-        winRate = getWinRate(profitsRSI)
+        winRate = getWinRate(profitsRSI) * 100
         self.lineEdit_3.setText(str(winRate) + "%")
         graphRSI(dataRSI, buy, sell)
 
