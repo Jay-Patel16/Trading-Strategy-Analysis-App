@@ -4,15 +4,15 @@ import plotly.graph_objects as go
 
 def RSI(asset, startD, endD):
     dataframe = yf.download(asset, start=startD, end=endD)
-    dataframe["200Day"] = dataframe['Adj Close'].rolling(window=200).mean()
+    dataframe["200 Day"] = dataframe['Adj Close'].rolling(window=200).mean()
     dataframe["RelativeReturn"] = dataframe['Adj Close'].pct_change()
     dataframe['Upmove'] = dataframe['RelativeReturn'].apply(
         lambda x: x if x > 0 else 0)
     dataframe['Downmove'] = dataframe['RelativeReturn'].apply(
         lambda x:  abs(x) if x < 0 else 0)
-    dataframe['Avg Up'] = dataframe['Upmove'].ewm(span=19).mean()
-    dataframe['Avg Down'] = dataframe['Downmove'].ewm(span=19).mean()
-    dataframe = dataframe.dropna()
+    dataframe['Avg Up'] = dataframe['Upmove'].ewm(span=20).mean()
+    dataframe['Avg Down'] = dataframe['Downmove'].ewm(span=20).mean()
+    # dataframe = dataframe.dropna()
     dataframe['RS'] = dataframe['Avg Up']/dataframe['Avg Down']
     dataframe['RSI'] = dataframe['RS'].apply(lambda x: 100-(100/(x+1)))
     dataframe.loc[(dataframe['Adj Close'] > dataframe['200Day'])
@@ -26,7 +26,7 @@ def getSignals(dataframe):
     Buy = []
     Sell = []
     for i in range(len(dataframe)):
-        if 'Yes' in dataframe['Buy'].iloc[i]:
+        if dataframe['Buy'].iloc[i] == 'Yes':
             Buy.append(dataframe.iloc[i+1].name)
             for j in range(1, 11):
                 if dataframe['RSI'].iloc[i+j] > 40:
@@ -57,5 +57,4 @@ def graphRSI(dataf, buy, sell):
             width=2
         ), symbol='arrow'
     ), name='Exit')
-    fig.write_image('Parts/images/RSIimage.png')
     fig.show()

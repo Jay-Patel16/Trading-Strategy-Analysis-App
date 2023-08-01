@@ -75,7 +75,7 @@ class Ui_TrendWin(object):
         self.label_5.setAlignment(QtCore.Qt.AlignCenter)
         self.label_5.setObjectName("label_5")
         self.lineEdit_3 = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_3.setGeometry(QtCore.QRect(410, 410, 113, 22))
+        self.lineEdit_3.setGeometry(QtCore.QRect(410, 430, 113, 22))
         self.lineEdit_3.setReadOnly(True)
         self.lineEdit_3.setObjectName("lineEdit_3")
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
@@ -132,7 +132,7 @@ class Ui_TrendWin(object):
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(310, 410, 81, 16))
+        self.label_3.setGeometry(QtCore.QRect(310, 430, 81, 16))
         font = QtGui.QFont()
         font.setFamily("8514oem")
         self.label_3.setFont(font)
@@ -153,7 +153,7 @@ class Ui_TrendWin(object):
         self.checkBox.setFont(font)
         self.checkBox.setObjectName("checkBox")
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(410, 350, 93, 28))
+        self.pushButton.setGeometry(QtCore.QRect(410, 380, 93, 28))
         self.pushButton.setObjectName("pushButton")
         TrendWin.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(TrendWin)
@@ -215,6 +215,16 @@ class Ui_TrendWin(object):
         self.menuOthers.addAction(self.actionGeneral_Recommendation_2)
         self.menubar.addAction(self.menuStrategies.menuAction())
         self.menubar.addAction(self.menuOthers.menuAction())
+        self.label_10 = QtWidgets.QLabel(self.centralwidget)
+        self.label_10.setGeometry(QtCore.QRect(270, 330, 381, 51))
+        self.label_10.hide()
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_10.setFont(font)
+        self.label_10.setStyleSheet("color: rgb(255, 0, 0);")
+        self.label_10.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_10.setObjectName("label_10")
 
         self.retranslateUi(TrendWin)
         QtCore.QMetaObject.connectSlotsByName(TrendWin)
@@ -222,6 +232,7 @@ class Ui_TrendWin(object):
     def retranslateUi(self, TrendWin):
         _translate = QtCore.QCoreApplication.translate
         TrendWin.setWindowTitle(_translate("TrendWin", "Trend Following"))
+        self.label_10.setText(_translate("TrendWin", "Missing Data"))
         self.label_5.setText(_translate("TrendWin", "Trend Following is the strategy of following is the idea of understanding \n"
                                         "price trends to determine when to enter and exit the market."))
         self.lineEdit_3.setPlaceholderText(_translate("TrendWin", "0"))
@@ -265,29 +276,33 @@ class Ui_TrendWin(object):
         from Strategies.general import convertDate, getWinRate
         from Strategies.trendFollowing import rangeTrendFollowing, oneDayData, graphTrendOneDay, trendFollowingOneDay
         stock = self.lineEdit.text()
-        buyPSellP = float(self.lineEdit_2.text())
+        buyPSellP = self.lineEdit_2.text()
         startDate = self.dateEdit_2.text()
         endDate = self.dateEdit.text()
         startD, endD = convertDate(startDate, endDate)
         rangeChecked = self.checkBox.isChecked()
-        starthour = int(self.lineEdit_4.text())
+        starthour = self.lineEdit_4.text()
 
-        if rangeChecked:
-            profitsTrend = rangeTrendFollowing(
-                stock, startD, endD, buyPSellP, buyPSellP, starthour)
-            print(profitsTrend)
-            winRateTrend = getWinRate(profitsTrend) * 100
-            self.lineEdit_3.setText(str(winRateTrend) + "%")
-        else:
-            dataTrend = oneDayData(stock, startD, endD)
-            buy, sell, profits = trendFollowingOneDay(
-                dataTrend, buyPSellP, buyPSellP, starthour)
-            print(profits)
-            if profits > 0:
-                self.lineEdit_3.setText("100%")
+        if stock and buyPSellP and startDate and endDate != "":
+            self.label_10.hide()
+            if rangeChecked:
+                profitsTrend = rangeTrendFollowing(
+                    stock, startD, endD, float(buyPSellP), float(buyPSellP), int(starthour))
+                print(profitsTrend)
+                winRateTrend = getWinRate(profitsTrend) * 100
+                self.lineEdit_3.setText(str(winRateTrend) + "%")
             else:
-                self.lineEdit_3.setText("0%")
-            graphTrendOneDay(buy, sell, dataTrend)
+                dataTrend = oneDayData(stock, startD, endD)
+                buy, sell, profits = trendFollowingOneDay(
+                    dataTrend, buyPSellP, buyPSellP, starthour)
+                print(profits)
+                if profits > 0:
+                    self.lineEdit_3.setText("100%")
+                else:
+                    self.lineEdit_3.setText("0%")
+                graphTrendOneDay(buy, sell, dataTrend)
+        else:
+            self.label_10.show()
 
 
 if __name__ == "__main__":

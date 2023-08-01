@@ -268,9 +268,6 @@ class Ui_GRWin(object):
         parent = os.path.dirname(current)
         sys.path.append(parent)
         from Strategies.general import TradingViewRec, convertDate, getStockData, exportToExcelData
-        # sys.path.insert(0, "Parts\Code")
-        # from Code.Strategies.general import TradingViewRec, convertDate, getStockData, exportToExcelData
-       # from Parts.Code.Strategies.general import TradingViewRec, convertDate, getStockData, exportToExcelData
         stock = self.lineEdit.text()
         exchange = self.comboBox.currentText()
         startDate = self.dateEdit.text()
