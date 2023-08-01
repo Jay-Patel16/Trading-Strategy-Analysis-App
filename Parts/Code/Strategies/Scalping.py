@@ -1,17 +1,5 @@
-import alpaca_trade_api as tradeapi
-from datetime import datetime
-import pandas as pd
 import pandas_ta as ta
 import yfinance as yf
-from lumibot.backtesting import YahooDataBacktesting
-from lumibot.brokers import Alpaca
-from lumibot.strategies import Strategy
-from lumibot.traders import Trader
-import yfinance as yf
-from tradingview_ta import TA_Handler, Interval, Exchange
-import tradingview_ta
-import pandas_datareader as web
-import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import numpy as np
 
