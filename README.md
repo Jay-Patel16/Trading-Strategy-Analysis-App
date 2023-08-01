@@ -3,6 +3,8 @@
 
 A python application that allows users to do backtesting of 3 different trading strategies: Trend Following, RSI, and Scalping. Users are able to customize these strategies through an UI. In addition, other features are present such as exporting historical data to excel, graphing strategic data, and providing general recommendations on specified stocks.
 
+- Simple definition of each trading strategy is present within the application
+
 # Get Started
     Step 1: Create a folder to save the repository locally
     Step 2: Clone repository to the newly created folder
@@ -14,6 +16,8 @@ A python application that allows users to do backtesting of 3 different trading 
     Step 7: Have fun testing your trading strategies!
 
 # Check For Proper Startup
-To make sure you have started the application properly, this is what will pop up
+To make sure you have started the application properly, below a screenshot is provided.
+- Once started, you may choice any option at the top.
+- Please follow the directions on the windows to have proper input entry!
 
-
+![](Parts/images/Starting%20GUI.PNG)
