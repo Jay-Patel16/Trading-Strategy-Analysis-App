@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QFileDialog
 
 
 class Ui_ScalpingWin(object):
@@ -49,7 +50,7 @@ class Ui_ScalpingWin(object):
 
     def setupUi(self, ScalpingWin):
         ScalpingWin.setObjectName("ScalpingWin")
-        ScalpingWin.resize(900, 460)
+        ScalpingWin.resize(900, 500)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("scalping.jpg"),
                        QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -121,18 +122,48 @@ class Ui_ScalpingWin(object):
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit.setGeometry(QtCore.QRect(160, 170, 113, 22))
         self.lineEdit.setObjectName("lineEdit")
+        self.lineEdit_5 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_5.setGeometry(QtCore.QRect(390, 420, 291, 22))
+        self.lineEdit_5.setReadOnly(True)
+        self.lineEdit_5.setPlaceholderText("")
+        self.lineEdit_5.setObjectName("lineEdit_5")
+        self.checkBox = QtWidgets.QCheckBox(self.centralwidget)
+        self.checkBox.setGeometry(QtCore.QRect(340, 380, 221, 20))
+        font = QtGui.QFont()
+        font.setFamily("8514oem")
+        self.checkBox.setFont(font)
+        self.checkBox.setObjectName("checkBox")
+        self.menubar = QtWidgets.QMenuBar(ScalpingWin)
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
         self.label_6.setGeometry(QtCore.QRect(620, 170, 121, 21))
         font = QtGui.QFont()
         font.setFamily("8514oem")
         self.label_6.setFont(font)
         self.label_6.setObjectName("label_6")
+
         self.lineEdit_4 = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_4.setGeometry(QtCore.QRect(750, 170, 113, 22))
         self.lineEdit_4.setObjectName("lineEdit_4")
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(700, 227, 93, 28))
         self.pushButton.setObjectName("pushButton")
+        self.label_9 = QtWidgets.QLabel(self.centralwidget)
+        self.label_9.setGeometry(QtCore.QRect(340, 420, 41, 16))
+        font = QtGui.QFont()
+        font.setFamily("8514oem")
+        self.label_9.setFont(font)
+        self.label_9.setObjectName("label_9")
+        self.label_9.setText('Link')
+        self.label_10 = QtWidgets.QLabel(self.centralwidget)
+        self.label_10.setGeometry(QtCore.QRect(270, 270, 381, 51))
+        self.label_10.hide()
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_10.setFont(font)
+        self.label_10.setStyleSheet("color: rgb(255, 0, 0);")
+        self.label_10.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_10.setObjectName("label_10")
         ScalpingWin.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(ScalpingWin)
         self.menubar.setStyleSheet(
@@ -199,6 +230,9 @@ class Ui_ScalpingWin(object):
         _translate = QtCore.QCoreApplication.translate
         ScalpingWin.setWindowTitle(_translate("ScalpingWin", "Scalping"))
         self.lineEdit_2.setPlaceholderText(_translate("ScalpingWin", "0"))
+        self.checkBox.setText(_translate(
+            "ScalpingWin", "Export Data to Excel"))
+        self.label_10.setText(_translate("ScalpingWin", "Missing Data"))
         self.label_3.setText(_translate("ScalpingWin", "Win Rate"))
         self.label_4.setText(_translate("ScalpingWin", "Scalping"))
         self.label_7.setText(_translate("ScalpingWin", "Start Date"))
@@ -232,20 +266,30 @@ class Ui_ScalpingWin(object):
         current = os.path.dirname(os.path.realpath(__file__))
         parent = os.path.dirname(current)
         sys.path.append(parent)
-        from Strategies.general import convertDate, getWinRate, profits
+        from Strategies.general import convertDate, getWinRate, profits, exportToExcelData
         from Strategies.Scalping import scalping, displayEntryExit, graphScalping
         stock = self.lineEdit.text()
-        buyPSellP = int(self.lineEdit_2.text())
+        buyPSellP = self.lineEdit_2.text()
         startDate = self.dateEdit_2.text()
         endDate = self.dateEdit.text()
-        timeout = int(self.lineEdit_4.text())
-        startD, endD = convertDate(startDate, endDate)
-        data, signals = scalping(stock, startD, endD, timeout, buyPSellP)
-        buy, sell = displayEntryExit(data)
-        profitsScalping = profits(buy, sell, data)
-        winRate = getWinRate(profitsScalping) * 100
-        self.lineEdit_3.setText(str(winRate) + "%")
-        graphScalping(data, buy, sell)
+        timeout = self.lineEdit_4.text()
+        if stock and buyPSellP and startDate and endDate and timeout != "":
+            self.label_10.hide()
+            startD, endD = convertDate(startDate, endDate)
+            data, signals = scalping(
+                stock, startD, endD, int(timeout), float(buyPSellP))
+            buy, sell = displayEntryExit(data)
+            profitsScalping = profits(buy, sell, data)
+            winRate = getWinRate(profitsScalping) * 100
+            self.lineEdit_3.setText(str(winRate) + "%")
+            graphScalping(data, buy, sell)
+            if self.checkBox.isChecked():
+                exportToExcelData(data, stock)
+                fileExplorer = QFileDialog.getOpenFileNames()
+                link = ''.join(fileExplorer[0])
+                self.lineEdit_5.setText(os.path.abspath(link))
+        else:
+            self.label_10.show()
 
 
 if __name__ == "__main__":

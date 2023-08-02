@@ -1,37 +1,23 @@
-import alpaca_trade_api as tradeapi
-from datetime import datetime
-import pandas as pd
-import pandas_ta as ta
 import yfinance as yf
-from lumibot.backtesting import YahooDataBacktesting
-from lumibot.brokers import Alpaca
-from lumibot.strategies import Strategy
-from lumibot.traders import Trader
-import yfinance as yf
-from tradingview_ta import TA_Handler, Interval, Exchange
-import tradingview_ta
-import pandas_datareader as web
-import matplotlib.pyplot as plt
 import plotly.graph_objects as go
-import numpy as np
 
 
 def RSI(asset, startD, endD):
     dataframe = yf.download(asset, start=startD, end=endD)
-    dataframe["200Day"] = dataframe['Adj Close'].rolling(window=200).mean()
+    dataframe["200 Day"] = dataframe['Adj Close'].rolling(window=200).mean()
     dataframe["RelativeReturn"] = dataframe['Adj Close'].pct_change()
     dataframe['Upmove'] = dataframe['RelativeReturn'].apply(
         lambda x: x if x > 0 else 0)
     dataframe['Downmove'] = dataframe['RelativeReturn'].apply(
         lambda x:  abs(x) if x < 0 else 0)
-    dataframe['Avg Up'] = dataframe['Upmove'].ewm(span=19).mean()
-    dataframe['Avg Down'] = dataframe['Downmove'].ewm(span=19).mean()
-    dataframe = dataframe.dropna()
+    dataframe['Avg Up'] = dataframe['Upmove'].ewm(span=20).mean()
+    dataframe['Avg Down'] = dataframe['Downmove'].ewm(span=20).mean()
+    # dataframe = dataframe.dropna()
     dataframe['RS'] = dataframe['Avg Up']/dataframe['Avg Down']
     dataframe['RSI'] = dataframe['RS'].apply(lambda x: 100-(100/(x+1)))
-    dataframe.loc[(dataframe['Adj Close'] > dataframe['200Day'])
+    dataframe.loc[(dataframe['Adj Close'] > dataframe['200 Day'])
                   & (dataframe['RSI'] < 30), 'Buy'] = 'Yes'
-    dataframe.loc[(dataframe['Adj Close'] < dataframe['200Day'])
+    dataframe.loc[(dataframe['Adj Close'] < dataframe['200 Day'])
                   | (dataframe['RSI'] > 30), 'Buy'] = 'No'
     return dataframe
 
@@ -40,7 +26,7 @@ def getSignals(dataframe):
     Buy = []
     Sell = []
     for i in range(len(dataframe)):
-        if 'Yes' in dataframe['Buy'].iloc[i]:
+        if dataframe['Buy'].iloc[i] == 'Yes':
             Buy.append(dataframe.iloc[i+1].name)
             for j in range(1, 11):
                 if dataframe['RSI'].iloc[i+j] > 40:
@@ -56,14 +42,14 @@ def graphRSI(dataf, buy, sell):
                                          open=dataf['Open'],
                                          high=dataf['High'],
                                          low=dataf['Low'],
-                                         close=dataf['Close'])])
-    fig.add_scatter(x=dataf.loc[buy].index, y=dataf.loc[buy]['Close'], mode='markers', marker=dict(color='#32FF00',
-                                                                                                   size=12,
-                                                                                                   line=dict(
-                                                                                                       color='Black',
-                                                                                                       width=2
-                                                                                                   ), symbol='arrow'), name='Enter')
-    fig.add_scatter(x=dataf.loc[sell].index, y=dataf.loc[sell]['Close'], mode='markers', marker=dict(
+                                         close=dataf['Close'])], layout=go.Layout(title=go.layout.Title(text="RSI Graph")))
+    fig.add_scatter(x=dataf.loc[buy].index, y=dataf.loc[buy]['Open'], mode='markers', marker=dict(color='#32FF00',
+                                                                                                  size=12,
+                                                                                                  line=dict(
+                                                                                                      color='Black',
+                                                                                                      width=2
+                                                                                                  ), symbol='arrow'), name='Enter')
+    fig.add_scatter(x=dataf.loc[sell].index, y=dataf.loc[sell]['Open'], mode='markers', marker=dict(
         color='#FF1B00',
         size=12,
         line=dict(
@@ -71,5 +57,4 @@ def graphRSI(dataf, buy, sell):
             width=2
         ), symbol='arrow'
     ), name='Exit')
-    fig.write_image('Parts/images/RSIimage.png')
     fig.show()

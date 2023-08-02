@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QFileDialog
 
 
 class Ui_RSIWin(object):
@@ -48,7 +49,7 @@ class Ui_RSIWin(object):
 
     def setupUi(self, RSIWin):
         RSIWin.setObjectName("RSIWin")
-        RSIWin.resize(960, 430)
+        RSIWin.resize(960, 500)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(
             "rsi-trading-indicator-icon-with-a-phone-vector-41137647.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -56,7 +57,7 @@ class Ui_RSIWin(object):
         self.centralwidget = QtWidgets.QWidget(RSIWin)
         self.centralwidget.setObjectName("centralwidget")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(330, 300, 81, 16))
+        self.label_3.setGeometry(QtCore.QRect(350, 300, 81, 16))
         font = QtGui.QFont()
         font.setFamily("8514oem")
         self.label_3.setFont(font)
@@ -86,18 +87,33 @@ class Ui_RSIWin(object):
         font.setFamily("8514oem")
         self.label_8.setFont(font)
         self.label_8.setObjectName("label_8")
+        self.label_10 = QtWidgets.QLabel(self.centralwidget)
+        self.label_10.setGeometry(QtCore.QRect(285, 200, 381, 51))
+        self.label_10.hide()
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_10.setFont(font)
+        self.label_10.setStyleSheet("color: rgb(255, 0, 0);")
+        self.label_10.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_10.setObjectName("label_10")
         self.lineEdit_3 = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_3.setGeometry(QtCore.QRect(430, 300, 113, 22))
+        self.lineEdit_3.setGeometry(QtCore.QRect(450, 300, 113, 22))
         self.lineEdit_3.setReadOnly(True)
         self.lineEdit_3.setObjectName("lineEdit_3")
         self.dateEdit_2 = QtWidgets.QDateEdit(self.centralwidget)
         self.dateEdit_2.setGeometry(QtCore.QRect(470, 170, 110, 22))
         self.dateEdit_2.setObjectName("dateEdit_2")
+        self.lineEdit_5 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_5.setGeometry(QtCore.QRect(400, 385, 291, 22))
+        self.lineEdit_5.setReadOnly(True)
+        self.lineEdit_5.setPlaceholderText("")
+        self.lineEdit_5.setObjectName("lineEdit_5")
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit.setGeometry(QtCore.QRect(170, 170, 113, 22))
         self.lineEdit.setObjectName("lineEdit")
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(430, 230, 93, 28))
+        self.pushButton.setGeometry(QtCore.QRect(430, 240, 93, 28))
         self.pushButton.setObjectName("pushButton")
         self.lineEdit_4 = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_4.setGeometry(QtCore.QRect(990, 260, 113, 22))
@@ -118,6 +134,12 @@ class Ui_RSIWin(object):
         self.label.setFont(font)
         self.label.setObjectName("label")
         RSIWin.setCentralWidget(self.centralwidget)
+        self.checkBox = QtWidgets.QCheckBox(self.centralwidget)
+        self.checkBox.setGeometry(QtCore.QRect(350, 340, 221, 20))
+        font = QtGui.QFont()
+        font.setFamily("8514oem")
+        self.checkBox.setFont(font)
+        self.checkBox.setObjectName("checkBox")
         self.menubar = QtWidgets.QMenuBar(RSIWin)
         self.menubar.setStyleSheet(
             "background-color: rgb(116, 235, 213);")
@@ -169,6 +191,13 @@ class Ui_RSIWin(object):
         self.menuHome.addAction(self.actionHome)
         self.menubar.addAction(self.menuRSI_Indexing.menuAction())
         self.menubar.addAction(self.menuHome.menuAction())
+        self.label_9 = QtWidgets.QLabel(self.centralwidget)
+        self.label_9.setGeometry(QtCore.QRect(350, 385, 81, 16))
+        font = QtGui.QFont()
+        font.setFamily("8514oem")
+        self.label_9.setFont(font)
+        self.label_9.setObjectName("label_9")
+        self.label_9.setText('Link')
 
         self.retranslateUi(RSIWin)
         QtCore.QMetaObject.connectSlotsByName(RSIWin)
@@ -176,13 +205,15 @@ class Ui_RSIWin(object):
     def retranslateUi(self, RSIWin):
         _translate = QtCore.QCoreApplication.translate
         RSIWin.setWindowTitle(_translate("RSIWin", "RSI Indexing"))
+        self.checkBox.setText(_translate("RSIWin", "Export Data to Excel"))
+        self.label_10.setText(_translate("RSIWin", "Missing Data"))
         self.label_3.setText(_translate("RSIWin", "Win Rate"))
         self.label_5.setText(_translate("RSIWin", "RSI Indexing is an idea of using moving average and RSI calculations over \n"
                                         "200 days to decide on if a stock is on an upward or downward trend. \n"
                                         "Leading to an entry or exit of market"))
         self.label_4.setText(_translate("RSIWin", "RSI Indexing"))
         self.label_8.setText(_translate("RSIWin", "End Date"))
-        self.lineEdit_3.setPlaceholderText(_translate("RSIWin", "0%"))
+        self.lineEdit_3.setPlaceholderText(_translate("RSIWin", "0"))
         self.pushButton.setText(_translate("RSIWin", "Submit"))
         self.pushButton.clicked.connect(self.RSIOutput)
         self.lineEdit_4.setPlaceholderText(_translate("RSIWin", "5"))
@@ -204,18 +235,28 @@ class Ui_RSIWin(object):
         current = os.path.dirname(os.path.realpath(__file__))
         parent = os.path.dirname(current)
         sys.path.append(parent)
-        from Strategies.general import convertDate, getWinRate, profits
+        from Strategies.general import convertDate, getWinRate, profits, exportToExcelData
         from Strategies.RSI import RSI, graphRSI, getSignals
         stock = self.lineEdit.text()
         startDate = self.dateEdit_2.text()
         endDate = self.dateEdit.text()
-        startD, endD = convertDate(startDate, endDate)
-        dataRSI = RSI(stock, startD, endD)
-        buy, sell = getSignals(dataRSI)
-        profitsRSI = profits(buy, sell, dataRSI)
-        winRate = getWinRate(profitsRSI) * 100
-        self.lineEdit_3.setText(str(winRate) + "%")
-        graphRSI(dataRSI, buy, sell)
+        if stock and startDate and endDate != "":
+            self.label_10.hide()
+            startD, endD = convertDate(startDate, endDate)
+            dataRSI = RSI(stock, startD, endD)
+            buy, sell = getSignals(dataRSI)
+            profitsRSI = profits(buy, sell, dataRSI)
+            winRate = getWinRate(profitsRSI) * 100
+            self.lineEdit_3.setText(str(winRate) + "%")
+            graphRSI(dataRSI, buy, sell)
+
+            if self.checkBox.isChecked():
+                exportToExcelData(dataRSI, stock)
+                fileExplorer = QFileDialog.getOpenFileNames()
+                link = ''.join(fileExplorer[0])
+                self.lineEdit_5.setText(os.path.abspath(link))
+        else:
+            self.label_10.show()
 
 
 if __name__ == "__main__":

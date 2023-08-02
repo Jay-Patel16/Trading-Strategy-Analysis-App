@@ -1,19 +1,5 @@
-import alpaca_trade_api as tradeapi
-from datetime import datetime
-import pandas as pd
-import pandas_ta as ta
 import yfinance as yf
-from lumibot.backtesting import YahooDataBacktesting
-from lumibot.brokers import Alpaca
-from lumibot.strategies import Strategy
-from lumibot.traders import Trader
-import yfinance as yf
-from tradingview_ta import TA_Handler, Interval, Exchange
-import tradingview_ta
-import pandas_datareader as web
-import matplotlib.pyplot as plt
 import plotly.graph_objects as go
-import numpy as np
 
 
 def oneDayData(asset, startDate, EndDate):
@@ -79,7 +65,6 @@ def trendFollowingOneDay(data, buyPercent, sellPercent, hour):
 def rangeTrendFollowing(asset, startDate, endDate, buyP, sellP, startHour):
     profitsOverall = []
     dataRange = yf.download(asset, start=startDate, end=endDate, interval='1d')
-    print(len(dataRange))
     for i in range(1, len(dataRange)-1):
         dataOneDay = oneDayData(
             asset, dataRange.iloc[i].name, dataRange.iloc[i+1].name)
