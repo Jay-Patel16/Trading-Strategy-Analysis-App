@@ -63,7 +63,7 @@ class Ui_GRWin(object):
         self.label_4.setAlignment(QtCore.Qt.AlignCenter)
         self.label_4.setObjectName("label_4")
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit.setGeometry(QtCore.QRect(280, 180, 113, 22))
+        self.lineEdit.setGeometry(QtCore.QRect(290, 180, 113, 22))
         self.lineEdit.setObjectName("lineEdit")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
         self.label_3.setGeometry(QtCore.QRect(330, 400, 151, 20))

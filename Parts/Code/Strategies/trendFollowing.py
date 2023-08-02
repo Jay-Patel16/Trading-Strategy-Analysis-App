@@ -65,7 +65,6 @@ def trendFollowingOneDay(data, buyPercent, sellPercent, hour):
 def rangeTrendFollowing(asset, startDate, endDate, buyP, sellP, startHour):
     profitsOverall = []
     dataRange = yf.download(asset, start=startDate, end=endDate, interval='1d')
-    print(len(dataRange))
     for i in range(1, len(dataRange)-1):
         dataOneDay = oneDayData(
             asset, dataRange.iloc[i].name, dataRange.iloc[i+1].name)

@@ -4,8 +4,8 @@ import xlsxwriter
 
 
 def profits(Buy, Sell, data):
-    Profits = (data.loc[Sell].Close.values -
-               data.loc[Buy].Close.values)/data.loc[Buy].Close.values
+    Profits = (data.loc[Sell].Open.values -
+               data.loc[Buy].Open.values)/data.loc[Buy].Open.values
     return Profits
 
 

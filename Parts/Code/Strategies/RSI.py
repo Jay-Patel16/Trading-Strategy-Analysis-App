@@ -15,9 +15,9 @@ def RSI(asset, startD, endD):
     # dataframe = dataframe.dropna()
     dataframe['RS'] = dataframe['Avg Up']/dataframe['Avg Down']
     dataframe['RSI'] = dataframe['RS'].apply(lambda x: 100-(100/(x+1)))
-    dataframe.loc[(dataframe['Adj Close'] > dataframe['200Day'])
+    dataframe.loc[(dataframe['Adj Close'] > dataframe['200 Day'])
                   & (dataframe['RSI'] < 30), 'Buy'] = 'Yes'
-    dataframe.loc[(dataframe['Adj Close'] < dataframe['200Day'])
+    dataframe.loc[(dataframe['Adj Close'] < dataframe['200 Day'])
                   | (dataframe['RSI'] > 30), 'Buy'] = 'No'
     return dataframe
 
@@ -42,14 +42,14 @@ def graphRSI(dataf, buy, sell):
                                          open=dataf['Open'],
                                          high=dataf['High'],
                                          low=dataf['Low'],
-                                         close=dataf['Close'])])
-    fig.add_scatter(x=dataf.loc[buy].index, y=dataf.loc[buy]['Close'], mode='markers', marker=dict(color='#32FF00',
-                                                                                                   size=12,
-                                                                                                   line=dict(
-                                                                                                       color='Black',
-                                                                                                       width=2
-                                                                                                   ), symbol='arrow'), name='Enter')
-    fig.add_scatter(x=dataf.loc[sell].index, y=dataf.loc[sell]['Close'], mode='markers', marker=dict(
+                                         close=dataf['Close'])], layout=go.Layout(title=go.layout.Title(text="RSI Graph")))
+    fig.add_scatter(x=dataf.loc[buy].index, y=dataf.loc[buy]['Open'], mode='markers', marker=dict(color='#32FF00',
+                                                                                                  size=12,
+                                                                                                  line=dict(
+                                                                                                      color='Black',
+                                                                                                      width=2
+                                                                                                  ), symbol='arrow'), name='Enter')
+    fig.add_scatter(x=dataf.loc[sell].index, y=dataf.loc[sell]['Open'], mode='markers', marker=dict(
         color='#FF1B00',
         size=12,
         line=dict(

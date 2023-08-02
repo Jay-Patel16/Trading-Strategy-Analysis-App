@@ -75,13 +75,13 @@ def graphScalping(dataF, Buy, Sell):
                                      ))
     SetPlaceBuy = [0] * len(Buy)
     SetPlaceSell = [0] * len(Buy)
-    fig.add_scatter(x=dataF.loc[Buy].Date, y=dataF.loc[Buy]['Close'], mode='markers', marker=dict(color='#32FF00',
-                                                                                                  size=12,
-                                                                                                  line=dict(
-                                                                                                      color='Black',
-                                                                                                      width=2
-                                                                                                  ), symbol='arrow'), name='Enter')
-    fig.add_scatter(x=dataF.loc[Sell].Date, y=dataF.loc[Sell]['Close'], mode='markers', marker=dict(
+    fig.add_scatter(x=dataF.loc[Buy].Date, y=dataF.loc[Buy]['Open'], mode='markers', marker=dict(color='#32FF00',
+                                                                                                 size=12,
+                                                                                                 line=dict(
+                                                                                                     color='Black',
+                                                                                                     width=2
+                                                                                                 ), symbol='arrow'), name='Enter')
+    fig.add_scatter(x=dataF.loc[Sell].Date, y=dataF.loc[Sell]['Open'], mode='markers', marker=dict(
         color='#FF1B00',
         size=12,
         line=dict(

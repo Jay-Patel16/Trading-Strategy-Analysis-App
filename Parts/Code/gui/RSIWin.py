@@ -113,7 +113,7 @@ class Ui_RSIWin(object):
         self.lineEdit.setGeometry(QtCore.QRect(170, 170, 113, 22))
         self.lineEdit.setObjectName("lineEdit")
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(430, 255, 93, 28))
+        self.pushButton.setGeometry(QtCore.QRect(430, 240, 93, 28))
         self.pushButton.setObjectName("pushButton")
         self.lineEdit_4 = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_4.setGeometry(QtCore.QRect(990, 260, 113, 22))

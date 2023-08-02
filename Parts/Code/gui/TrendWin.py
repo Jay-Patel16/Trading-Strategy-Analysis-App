@@ -288,7 +288,6 @@ class Ui_TrendWin(object):
             if rangeChecked:
                 profitsTrend = rangeTrendFollowing(
                     stock, startD, endD, float(buyPSellP), float(buyPSellP), int(starthour))
-                print(profitsTrend)
                 winRateTrend = getWinRate(profitsTrend) * 100
                 self.lineEdit_3.setText(str(winRateTrend) + "%")
             else:
