@@ -1,5 +1,5 @@
 
-# Trading Strategy Analysis Bot
+# Trading Strategy Analysis App
 
 A python application that allows users to do backtesting of 3 different trading strategies: Trend Following, RSI, and Scalping. Users are able to customize these strategies through an UI. In addition, other features are present such as exporting historical data to excel, graphing strategic data, and providing general recommendations on specified stocks.
 
